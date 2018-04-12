@@ -1,0 +1,59 @@
+body {
+    padding: 60px;
+}
+/*
+Defines the block for drawing the switch.
+width = padding + circle dia (pos1) + circle dia (pos2) + padding
+height = padding + circle dia + padding
+circle dia = 20px
+padding = 5px
+*/
+.switch {
+    width: 50px;
+    height: 30px;
+    position: relative; /* placement is relative whereever */
+    display: inline-block; /* we use block placement */
+}
+
+.switch input {
+    display: none; /* hide the actual checkbox */
+}
+.slider {
+    position: absolute; /* the slider inside is absolute to outer box */
+    top: 0; /* placed at 0th position from outer box */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    background-color: #ccc; /* color is grey */
+    border-radius: 30px; /* draw a semicircle at end of same radius as height of switch box */
+    transition: 500ms; /* the delay in transition color from grey to blue  */
+}
+/*
+the inner circle which slides is a 'before' element
+*/
+.slider::before {
+    position: absolute;
+    background-color: #fff; /* white in color */
+    height: 20px; /*height and width is circle diameter */
+    width: 20px;
+    content: ''; /* has not content - important!! */
+    bottom: 5px; /* hsas padding of 5px */
+    left: 5px;
+    border-radius: 50%; /* this gives the circle shape */
+    transition: 500ms; /* when sliding it has delay of half second */
+}
+
+/*
+When input is checked, change the slider element to blue color
+*/
+input:checked + .slider {
+    background-color: blue;
+}
+
+/*
+When input is checked, the before element in slider transition smooth
+*/
+input:checked + .slider::before {
+    transform: translate(20px);
+}
